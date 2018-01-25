@@ -4,16 +4,30 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#define PRINT_SIZE(st, rt) printf("size of %s : %zu bytes \n", (st), sizeof(rt))
+
 int main() {
   // Please print the sizes of the following types:
   // int, short, long, char, float, double, unsigned int, long long
   // uint8_t, int16_t, int32_t, and uint64_t
 
+
   // Here's how to show the size of one type. See if you can define a macro
   // to avoid copy pasting this code.
-  printf("size of %s : %zu bytes \n", "int", sizeof(int));
   // e.g. PRINT_SIZE("int", int);
   //      PRINT_SIZE("short", short);
+  PRINT_SIZE("int", int);
+  PRINT_SIZE("short", short);
+  PRINT_SIZE("long", long);
+  PRINT_SIZE("char", char);
+  PRINT_SIZE("float", float);
+  PRINT_SIZE("double", double);
+  PRINT_SIZE("unsigned int", uint);
+  PRINT_SIZE("long long", long long);
+  PRINT_SIZE("uint8_t", uint8_t);
+  PRINT_SIZE("int16_t", int16_t);
+  PRINT_SIZE("int32_t", int32_t);
+  PRINT_SIZE("uint64_t", uint64_t);
 
   // Composite types have sizes too.
   typedef struct {
