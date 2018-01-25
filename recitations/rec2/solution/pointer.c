@@ -32,21 +32,21 @@ int main(int argc, char * argv[]) {  // What is the data type of argv?
   char const * pcc2 = c;  // what type is this?
 
   // Are the following assignments valid?
-  *pcc = '7';  // No. Pointer is pointing to a char const
+  //*pcc = '7';  // No. Pointer is pointing to a char const
   pcc = *pcp;  // Yes. *pcp is a char pointer.
   pcc = argv[0];  // Yes. argv[0] is a char *.
 
   char * const cp = c;  // const pointer to character
   // Are the following assignments valid?
-  cp = *pcp;  // invalid. cannot change the const pointer
-  cp = *argv;  // invalid. cannot change the const pointer
+  //cp = *pcp;  // invalid. cannot change the const pointer
+  //cp = *argv;  // invalid. cannot change the const pointer
   *cp = '!';  // valid. can modify the target of the pointer
 
   const char * const cpc = c;  // const pointer to char const.
   // Are the following assignments valid?
-  cpc = *pcp;  // invalid
-  cpc = argv[0];  // invalid
-  *cpc = '@';  // invalid
+  //cpc = *pcp;  // invalid
+  //cpc = argv[0];  // invalid
+  //*cpc = '@';  // invalid
 
   return 0;
 }
