@@ -4,7 +4,7 @@ int* my_malloc(int size , int set) {
   int* array = malloc(size * sizeof(int));
   int i;
   for (i = 0; i < size; i++) {
-    *(array ++) = set;
+    array[i] = set;
   }
   return array;
 }

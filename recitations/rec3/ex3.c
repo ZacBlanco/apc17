@@ -20,6 +20,10 @@ vector_t VectorCreate(size_t n);
 // Frees the memory allocated for the vector_t.  Assumes v != NULL.
 void VectorFree(vector_t v);
 
+// Performs an operation on all elements in the vector.
+void VectorOp(vector_t v, void (*func)(element_t));
+
+
 // Sets the nth element of v to be e.  Returns the previous nth element_t in prev.
 // Freeing e is the responsibility of the user, not the vector_t.
 // Returns true iff successful.  Assumes v != NULL.
@@ -51,19 +55,36 @@ int main(int argc, char *argv[]) {
 
   for (i = 0; i < N; ++i) { // Place some elements in the vector.
     int *x = (int*)malloc(sizeof(int));
-    element_t old;
+    *x = i;
+    element_t old = NULL;
     VectorSet(v, i, x, &old);
   }
 
   PrintIntVector(v);
+  VectorOp(v, &free);
+  VectorFree(v);
 
   return EXIT_SUCCESS;
+}
+
+void VectorOp(vector_t v, void (*func)(element_t)) {
+  int i;
+  for (i = 0; i < v->length; i++) {
+    assert(v->arry[i] != NULL);
+    (*func)(v->arry[i]);
+  }
+  return;
 }
 
 
 vector_t VectorCreate(size_t n) {
   vector_t v = (vector_t)malloc(sizeof(struct vector_t));
   v->arry = (element_t*)malloc(n*sizeof(element_t));
+  v->length = n;
+  int i = 0;
+  for(i = 0; i < v-> length; i++) {
+    v->arry[i] = NULL;
+  }
   if (v == NULL || v->arry == NULL)
     return NULL;
 
@@ -104,9 +125,9 @@ size_t VectorLength(vector_t v) {
 }
 
 static element_t *ResizeArray(element_t *arry, size_t oldLen, size_t newLen) {
-  uint32_t i;
+  uint32_t i = 0;
   size_t copyLen = oldLen > newLen ? newLen : oldLen;
-  element_t *newArry;
+  element_t *newArry = NULL;
 
   assert(arry != NULL);
 
@@ -118,6 +139,9 @@ static element_t *ResizeArray(element_t *arry, size_t oldLen, size_t newLen) {
   // Copy elements to new array
   for (i = 0; i < copyLen; ++i)
     newArry[i] = arry[i];  
+
+
+  free(arry);
 
   // Null initialize rest of new array.
   for (i = copyLen; i < newLen; ++i)

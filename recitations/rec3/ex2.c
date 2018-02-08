@@ -14,12 +14,11 @@ int main(int argc, char* argv[]){
     int sum = 0;
     for (i=0; i < z; i++) {
         printf("Please enter an integer : "); 
-        scanf("%d", n++);
-        printf("The integer entered was %d \n", n[i-1]);
-        sum += n[i-1];
+        scanf("%d", n+i);
+        sum += n[i];
     }
 
     printf("Sum of all numbers is: %d\n", sum);
-    
+    free(n);
     return 0; 
 } 
