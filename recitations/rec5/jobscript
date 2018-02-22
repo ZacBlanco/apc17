@@ -1,8 +1,10 @@
 #!/bin/bash
-#SBATCH -A TG-CCR140008
 #SBATCH -J helloworld
 #SBATCH -o helloworld.stdout
-#SBATCH -N 4 -n 4
-#SBATCH -p normal
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH -p compute
 #SBATCH -t 00:01:00
-ibrun ./helloworld
+
+
+./ex1

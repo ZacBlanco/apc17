@@ -1,2 +1,0 @@
-# recitation4
-mpi

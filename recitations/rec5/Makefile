@@ -1,20 +1,18 @@
 CC = icpc
-MPCC = mpicxx
+MPCC = mpicc
 OPENMP = -openmp
 CFLAGS = -Wall -O3
 LIBS =
 
-all: helloworld
+all: ex1
 
 
-helloworld.o: helloworld.cpp
-        $(MPCC) -c $(CFLAGS) helloworld.cpp
+ex1.o: ex1.c
+	$(MPCC) -c $(CFLAGS) ex1.c
 
-
-helloworld: helloworld.o
-        $(MPCC) -o helloworld helloworld.o
-
+ex1: ex1.o
+	$(MPCC) -o ex1 ex1.o
 
 clean:
-        rm -f *.o $(TARGETS) *.stdout *.txt
+	rm -f *.o $(TARGETS) *.stdout *.txt
 
