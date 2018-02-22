@@ -26,4 +26,5 @@ int main(int argc, char *argv[])
 
 
   mpi_err = MPI_Finalize();
+  return 0;
 }

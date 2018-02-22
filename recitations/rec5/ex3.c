@@ -6,7 +6,6 @@
 
 int main(int argc, char *argv[])
 {
-
     int i, my_id, num_procs, num_elem;
     int array[N], array_final[N];
     int *array_recv;

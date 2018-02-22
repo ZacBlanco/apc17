@@ -15,5 +15,4 @@ int main(int argc, char* argv[]){
   /* Finalize MPI environment */
   MPI_Finalize() ;
 
-  return 0;
 }
