@@ -36,8 +36,8 @@ int main(void)
 
   // initialize input and output matrices on the host
   for (int i = 0; i < r; i++) {
-      for(int j = 0; j < c; j++) {
-        input[i*c + j] = 0.0f;
+      for(int j = i; j < c; j++) {
+        input[i*c + j] = r*1.0f;
         output[i*c + j] = 5.0f;
       }
 
