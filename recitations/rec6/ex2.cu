@@ -37,7 +37,7 @@ int main(void)
   // initialize input and output matrices on the host
   for (int i = 0; i < r; i++) {
       for(int j = i; j < c; j++) {
-        input[i*c + j] = nrows*i + r*1.0f;
+        input[i*c + j] = (float)nrows*i + r*1.0f;
         output[i*c + j] = 5.0f;
       }
 
