@@ -25,7 +25,7 @@ int check(int nrows, int ncols, float* input, float* output) {
 int main(void)
 {
   int r = 10000; // rows
-  int c = 7000;  // columns
+  int c = 10000;  // columns
   int N = r*c;   // total matrix entries.
 
   float *input, *output;
