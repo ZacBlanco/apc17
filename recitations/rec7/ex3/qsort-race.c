@@ -1,8 +1,9 @@
-
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <cilk/cilk.h>
+
+#define INTENTIONAL_RACE
 
 int* max(int* a, int* b) {
   if(*a > *b)

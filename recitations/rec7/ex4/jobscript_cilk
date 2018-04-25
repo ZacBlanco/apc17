@@ -1,10 +1,9 @@
 #!/bin/bash
-#SBATCH -A TG-CCR140008
-#SBATCH -J cilk_race
-#SBATCH -o cilk_rece.%j.stdout
+#SBATCH -J cilk_qsort
+#SBATCH -o cilk_qsort.%j.stdout
 #SBATCH -n 1
 #SBATCH -N 1
 #SBATCH -p normal
 #SBATCH -t 00:05:10
 
-cilk/bin/cilkview --trials=all ./qsort.64
+./qsort.64

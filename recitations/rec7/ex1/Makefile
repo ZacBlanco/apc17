@@ -1,6 +1,4 @@
-CC := gcc
-CFLAGS := -O3 -g -gdwarf-3 -fcilkplus
-LDFLAGS := -lcilkrts -ldl
+CC := icc
 
 TARGET := fib
 SRC := fib.c

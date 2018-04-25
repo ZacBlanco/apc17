@@ -1,10 +1,4 @@
-#
-# Makefile for the qsort-race example.
-#
-
-CC = gcc
-CFLAGS = -std=gnu99 -O0 -g -gdwarf-3 -fcilkplus
-LDFLAGS = -ldl -lcilkrts
+CC = icc
 
 TARGET = qsort-race
 SRC = qsort-race.c

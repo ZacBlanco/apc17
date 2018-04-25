@@ -6,10 +6,7 @@ ALLTARGETS := $(TARGETS64)
 # results dumped by cilkview objects
 VIEWS = qsort
 
-CC      = gcc
-CFLAGS  = -g -Werror -gdwarf-3 -std=gnu99 -fcilkplus
-LDFLAGS = -lcilkrts -ldl
-#INCLUDES = -I/afs/csail.mit.edu/proj/courses/6.172/cilkutil/include
+CC      = icc
 INCLUDES =
 
 OLDMODE := $(shell cat .buildmode 2> /dev/null)

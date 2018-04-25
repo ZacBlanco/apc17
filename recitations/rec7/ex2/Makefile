@@ -1,6 +1,4 @@
-CC = gcc
-CFLAGS = -O3 -g -Werror -gdwarf-3 -std=gnu99 -fcilkplus
-LDFLAGS = -ldl -lcilkrts
+CC = icc
 
 TARGET = transpose
 SRC = transpose.c
