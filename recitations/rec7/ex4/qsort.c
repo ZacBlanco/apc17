@@ -8,8 +8,8 @@
 
 #include "stdio.h"
 #include "stdlib.h"
+#include <time.h>
 #include <cilk/cilk.h>
-#include "./cilkview.h"
 
 void swap(int* a, int* b) {
     int tmp = *a;
@@ -114,13 +114,12 @@ int main(int argc, char **argv)
         exit(-1);
     }
 
-    long long int total_time = 0;
-    cilkview_data_t start, end;
     // for each trial, randomize data and sort it
+    unsigned long long total_time = 0;
     int j;
     for (j = 0; j < numTrials; ++j) {
         // initialize to pseudorandom inputs
-        srand(j+13);
+        srand(time(NULL));
         for (int i = 0; i < n; ++i) {
             a[i] = rand();
         }
@@ -130,12 +129,13 @@ int main(int argc, char **argv)
 #endif
 
         // run quicksort algorithm
-        __cilkview_query(start);
-
+        struct timeval tv;
+        gettimeofday(&tv, NULL);
+        unsigned long long t1 = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
         sample_qsort(a, a + n);
-
-        __cilkview_query(end);
-        total_time += (end.time - start.time);
+        gettimeofday(&tv, NULL);
+        unsigned long long t2 = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+        unsigned long long total_time = t2 - t1
 
 #ifdef DEBUG
         print_array(a, n);
@@ -166,9 +166,6 @@ int main(int argc, char **argv)
 
     // report time
     printf("Sort time: %e seconds\n", (total_time/1000.0));
-
-    __cilkview_do_report(&start, &end, "qsort",
-      CV_REPORT_WRITE_TO_LOG | CV_REPORT_WRITE_TO_RESULTS);
 
     // free integer array
     free(a);

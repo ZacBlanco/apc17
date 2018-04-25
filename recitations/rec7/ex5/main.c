@@ -4,28 +4,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
-#pragma GCC diagnostic ignored "-Wunused-value"
-#pragma GCC diagnostic ignored "-Wunused-function"
-#include "/afs/csail.mit.edu/proj/courses/6.172/cilkutil/include/cilktools/cilkview.h"
-
+#include <time.h>
 #include "poly.c"
 
+unsigned long long ms_time(struct timeval tv) {
+  return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+}
+
 bool test_multiply(Polynomial* p1, Polynomial* p2) {
-  cilkview_data_t start;
-  cilkview_data_t end;
+  struct timeval start;
+  struct timeval end;
+  unsigned long long start_ms;
+  unsigned long long end_ms;
 
-  __cilkview_query(start);
+  gettimeofday(&start, NULL);
+  start_ms = ms_time(start);
+
   Polynomial *p3 = multiply(p1, p2);
-  __cilkview_query(end);
 
-  printf("Naive runtime: %f seconds \n", (end.time - start.time) / 1000.0);
+  gettimeofday(&end,end NULL);
+  start_ms = ms_time(start);
 
-  __cilkview_query(start);
+  printf("Naive runtime: %f seconds \n", (end_ms - start_ms) / 1000.0);
+
+  gettimeofday(&start, NULL);
+  start_ms = ms_time(start);
+
   Polynomial *p4 = multiply_karat(p1, p2);
-  __cilkview_query(end);
 
-  printf("Karatsuba runtime: %f seconds \n", (end.time - start.time) / 1000.0);
+  gettimeofday(&end,end NULL);
+  start_ms = ms_time(start);
+  printf("Karatsuba runtime: %f seconds \n", (end_ms - start_ms) / 1000.0);
 
   // Uncomment these lines if you want to print the polynomials.
 

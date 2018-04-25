@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cilk/cilk.h>
-
-#define INTENTIONAL_RACE
+#include <time.h>
 
 int* max(int* a, int* b) {
   if(*a > *b)
@@ -49,7 +48,7 @@ void my_qsort(int* begin, int* end) {
 
   // Recurse on the left and right partitions.
   my_qsort(begin, middle);
-  my_qsort(max(begin + 1, middle), end);
+  my_qsort(max(begin + 1, middle-1), end);
 }
 
 // A simple test harness
@@ -57,7 +56,7 @@ int qmain(int n, int iteration) {
   int* a = (int *)malloc(sizeof(int)*n);
 
   // Fill the array with "random" data
-  srand(iteration+1);
+  srand(time(NULL));
   int i;
   for (i = 0; i < n; ++i) {
     a[i] = rand();

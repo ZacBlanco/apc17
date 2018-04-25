@@ -1,4 +1,4 @@
-CC = icc
+CC = icpc
 
 TARGET = transpose
 SRC = transpose.c
