@@ -118,15 +118,15 @@ void simple_mul(int *c, const int *a, const int *b, size_t n) {
 // B = b[0:n]
 // C = c[0:2*n-1]
 void karatsuba(int *c, const int *a, const int *b, size_t n) {
-    if (n <= 2) {
+    if (n <= 256) {
         simple_mul(c, a, b, n);
     } else {
         size_t m = n / 2;
         // Set c[0..n-1] = $t_0$
-        karatsuba(c, a, b, m);
+        cilk_spawn karatsuba(c, a, b, m);
 
         // Set c[2*m..2*m+n-1] = $t_2$
-        karatsuba(c + 2 * m, a + m, b + m, n - m);
+        cilk_spawn karatsuba(c + 2 * m, a + m, b + m, n - m);
 
         // Allocate some temporary space.
         int *a_sum = temp_space(4 * (n - m));
@@ -146,7 +146,7 @@ void karatsuba(int *c, const int *a, const int *b, size_t n) {
 
         // Set t = $t_1$
         karatsuba(t, a_sum, b_sum, n - m);
-
+        cilk_sync;
         // Set t = $t_1 - t_0 - t_2$
         for (int i = 0; i < 2 * m - 1; i++) {
           t[i] -= c[i] + c[2 * m + i];

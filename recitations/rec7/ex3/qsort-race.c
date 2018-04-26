@@ -47,8 +47,9 @@ void my_qsort(int* begin, int* end) {
   *middle = tmp;
 
   // Recurse on the left and right partitions.
-  my_qsort(begin, middle);
-  my_qsort(max(begin + 1, middle-1), end);
+  cilk_spawn my_qsort(begin, middle);
+  cilk_spawn my_qsort(max(begin + 1, middle), end);
+  cilk_sync;
 }
 
 // A simple test harness

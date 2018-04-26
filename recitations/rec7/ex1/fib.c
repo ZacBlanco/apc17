@@ -7,9 +7,9 @@ int fib(int n) {
   }
 
   int x, y;
-    x = fib(n-1);
+    x = cilk_spawn fib(n-1);
     y = fib(n-2);
-
+    cilk_sync;
   return x+y;
 }
 
