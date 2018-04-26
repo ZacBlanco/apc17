@@ -10,6 +10,8 @@
 #include "stdlib.h"
 #include <time.h>
 #include <cilk/cilk.h>
+#include <assert.h>
+
 
 void swap(int* a, int* b) {
     int tmp = *a;
@@ -135,7 +137,7 @@ int main(int argc, char **argv)
         sample_qsort(a, a + n);
         gettimeofday(&tv, NULL);
         unsigned long long t2 = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-        unsigned long long total_time = t2 - t1
+        total_time = t2 - t1;
 
 #ifdef DEBUG
         print_array(a, n);

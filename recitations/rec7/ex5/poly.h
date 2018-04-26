@@ -4,6 +4,7 @@
 #define _POLY_H
 
 #include <stdio.h>
+#include <time.h>
 
 struct Polynomial {
     int *coefficients;

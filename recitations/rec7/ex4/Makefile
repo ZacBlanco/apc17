@@ -6,7 +6,7 @@ ALLTARGETS := $(TARGETS64)
 # results dumped by cilkview objects
 VIEWS = qsort
 
-CC      = icc
+CC      = icpc
 INCLUDES =
 
 OLDMODE := $(shell cat .buildmode 2> /dev/null)

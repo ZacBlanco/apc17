@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
+#include <sys/time.h>
 #include "poly.c"
 
 unsigned long long ms_time(struct timeval tv) {
