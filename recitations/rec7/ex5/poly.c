@@ -7,12 +7,12 @@ void karatsuba(int *c, const int *a, const int *b, size_t n);
 
 Polynomial *polynomial_new(int size) {
   assert(size > 0);
-  Polynomial *polynomial = malloc(sizeof(polynomial));
+  Polynomial *polynomial = (Polynomial *)malloc(sizeof(polynomial));
   if (polynomial == NULL) {
     return NULL;
   }
   polynomial->size = size;
-  polynomial->coefficients = malloc(size * sizeof(int));
+  polynomial->coefficients = (int *)malloc(size * sizeof(int));
   return polynomial;
 }
 

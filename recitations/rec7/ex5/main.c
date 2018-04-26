@@ -23,8 +23,8 @@ bool test_multiply(Polynomial* p1, Polynomial* p2) {
 
   Polynomial *p3 = multiply(p1, p2);
 
-  gettimeofday(&end,end NULL);
-  start_ms = ms_time(start);
+  gettimeofday(&end, NULL);
+  end_ms = ms_time(end);
 
   printf("Naive runtime: %f seconds \n", (end_ms - start_ms) / 1000.0);
 
@@ -33,8 +33,8 @@ bool test_multiply(Polynomial* p1, Polynomial* p2) {
 
   Polynomial *p4 = multiply_karat(p1, p2);
 
-  gettimeofday(&end,end NULL);
-  start_ms = ms_time(start);
+  gettimeofday(&end, NULL);
+  end_ms = ms_time(end);
   printf("Karatsuba runtime: %f seconds \n", (end_ms - start_ms) / 1000.0);
 
   // Uncomment these lines if you want to print the polynomials.

@@ -1,4 +1,4 @@
-CC= icc
+CC= icpc
 
 #results dumped by cilkview objects
 VIEWS = main
