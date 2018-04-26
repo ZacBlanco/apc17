@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH -J cilk_qsort
+#SBATCH -o cilk_qsort.%j.stdout
+#SBATCH -n 1
+#SBATCH -N 1
+#SBATCH -p normal
+#SBATCH -t 00:05:10
+
+./qsort.64
